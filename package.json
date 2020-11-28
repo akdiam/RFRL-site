@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "firebase": "^8.1.1",
     "formik": "^2.2.5",
+    "material-ui-phone-number": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",

@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import SurveyForm from './Form/SurveyForm';
+import FormComplete from './Form/FormComplete';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -27,8 +28,14 @@ function App() {
     <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route path="/jimmy">
+            <Route path="/survey/jimmy">
               <SurveyForm 
+              enterprise_name='Jimmy'
+              enterprise_msg='Thank you to all my loyal customers!'
+              />
+            </Route>
+            <Route path="/survey/form-complete">
+              <FormComplete
               enterprise_name='Jimmy'
               />
             </Route>

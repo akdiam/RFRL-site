@@ -2,6 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import * as Yup from 'yup';
+import {useHistory} from 'react-router-dom';
 import logo from './RFRL_Logo_Transparent_.png';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -15,8 +16,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function SurveyForm({ enterprise_name }) {
+export default function SurveyForm({ enterprise_name, enterprise_msg }) {
     const classes = useStyles();
+    let history = useHistory();
 
     const sendToSheets = (submission) => {
         db.collection(enterprise_name).doc(submission.email).set({
@@ -24,12 +26,14 @@ export default function SurveyForm({ enterprise_name }) {
             last_name: submission.last_name,
             phone_num: submission.phone_num,
             snap_user: submission.snap_user,
-            email: submission.email
+            email: submission.email,
+            referrer: submission.referrer,
         })
         .then(() => console.log('Submission accepted'))
         .catch((err) => console.log(`Error: ${err}`));
     }
 
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
     const formik = useFormik({
         initialValues: {
             first_name: '',
@@ -49,17 +53,21 @@ export default function SurveyForm({ enterprise_name }) {
         onSubmit: values => {
             console.log(values);
             sendToSheets(values);
+            history.push('/survey/form-complete');
         }
     });
 
     return (
-        <form onSubmit={formik.handleSubmit} style={{paddingTop: '100px'}}>
+        <form onSubmit={formik.handleSubmit} style={{paddingTop: '80px'}}>
             <Grid container className={classes.root} spacing={2}>
                 <Grid container item xs={12} justify='center'>
                     <img src={logo} alt='image not found'/>
                 </Grid>
-                <Grid container item xs={12} justify='center'>
-                    <Typography variant='h6'>{`RFRL x ${enterprise_name}`}</Typography>
+                <Grid container item xs={12} justify='center' style={{marginBottom: '20px'}}>
+                    <Grid container item xs={12} justify='center'>
+                        <Typography variant='h6' style={{marginTop: '10px', marginBottom: '10px'}}>{`RFRL x ${enterprise_name}`}</Typography>
+                    </Grid>
+                    <Typography variant='p'>{`A word from ${enterprise_name}: ${enterprise_msg}`}</Typography>
                 </Grid>
                 <Grid container item xs={12} justify='center'>
                     <TextField id='referrer' 
@@ -67,10 +75,11 @@ export default function SurveyForm({ enterprise_name }) {
                     variant='outlined' 
                     onChange={formik.handleChange} 
                     value={formik.values.referrer}
-                    style={{margin: '10px'}}
+                    style={{marginBottom: '-5px', marginTop: '10px'}}
                     {...(formik.touched.referrer && formik.errors.referrer && {error: true, helperText: formik.errors.referrer})}
                     />                   
                 </Grid>
+
                 <Grid container item xs={12} justify='center'>
                     <TextField id='first_name' 
                     label='First Name' 
@@ -81,10 +90,9 @@ export default function SurveyForm({ enterprise_name }) {
                     {...(formik.touched.first_name && formik.errors.first_name && {error: true, helperText: formik.errors.first_name})}
                     />
 
-
                     <TextField id='last_name' 
                     label='Last Name' 
-                    variant='outlined' 
+                    variant='outlined'
                     onChange={formik.handleChange} 
                     value={formik.values.last_name}
                     style={{margin: '10px'}}
