@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import {db}from '../firebase';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,6 +17,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SurveyForm({ enterprise_name }) {
     const classes = useStyles();
+
+    const sendToSheets = (submission) => {
+        db.collection(enterprise_name).doc(submission.email).set({
+            first_name: submission.first_name,
+            last_name: submission.last_name,
+            phone_num: submission.phone_num,
+            snap_user: submission.snap_user,
+            email: submission.email
+        })
+        .then(() => console.log('Submission accepted'))
+        .catch((err) => console.log(`Error: ${err}`));
+    }
+
     const formik = useFormik({
         initialValues: {
             first_name: '',
@@ -23,15 +37,18 @@ export default function SurveyForm({ enterprise_name }) {
             phone_num: '',
             snap_user: '',
             email: '',
+            referrer: '',
         },  
         validationSchema: Yup.object({
             first_name: Yup.string().required('Required'),
             last_name: Yup.string().required('Required'),
             phone_num: Yup.string().required('Required'),
-            email: Yup.string().required('Required')
+            email: Yup.string().required('Required'),
+            referrer: Yup.string().required('Required'),
         }),
         onSubmit: values => {
             console.log(values);
+            sendToSheets(values);
         }
     });
 
@@ -43,6 +60,16 @@ export default function SurveyForm({ enterprise_name }) {
                 </Grid>
                 <Grid container item xs={12} justify='center'>
                     <Typography variant='h6'>{`RFRL x ${enterprise_name}`}</Typography>
+                </Grid>
+                <Grid container item xs={12} justify='center'>
+                    <TextField id='referrer' 
+                    label='Who Sent You?' 
+                    variant='outlined' 
+                    onChange={formik.handleChange} 
+                    value={formik.values.referrer}
+                    style={{margin: '10px'}}
+                    {...(formik.touched.referrer && formik.errors.referrer && {error: true, helperText: formik.errors.referrer})}
+                    />                   
                 </Grid>
                 <Grid container item xs={12} justify='center'>
                     <TextField id='first_name' 
@@ -91,7 +118,7 @@ export default function SurveyForm({ enterprise_name }) {
 
                 </Grid>
                 <Grid container item xs={12} justify='center' style={{paddingBottom: '50px'}}>
-                    <Button type='submit' variant='outlined' color='seconary'>Submit</Button>
+                    <Button type='submit' variant='outlined' color='secondary'>Submit</Button>
                 </Grid>
             </Grid>
         </form>
