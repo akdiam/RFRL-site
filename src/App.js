@@ -31,7 +31,7 @@ function App() {
             <Route path="/survey/jimmy">
               <SurveyForm 
               enterprise_name='Jimmy'
-              enterprise_msg='Thank you to all my loyal customers!'
+              enterprise_msg='Gas on me!'
               />
             </Route>
             <Route path="/survey/form-complete">

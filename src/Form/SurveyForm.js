@@ -65,7 +65,9 @@ export default function SurveyForm({ enterprise_name, enterprise_msg }) {
                 </Grid>
                 <Grid container item xs={12} justify='center' style={{marginBottom: '20px'}}>
                     <Grid container item xs={12} justify='center'>
-                        <Typography variant='h6' style={{marginTop: '10px', marginBottom: '10px'}}>{`RFRL x ${enterprise_name}`}</Typography>
+                        <Typography variant='h6' style={{marginTop: '10px', marginBottom: '10px'}}>
+                            {`RFRL x ${enterprise_name}`}
+                        </Typography>
                     </Grid>
                     <Typography variant='p'>{`A word from ${enterprise_name}: ${enterprise_msg}`}</Typography>
                 </Grid>
@@ -123,7 +125,6 @@ export default function SurveyForm({ enterprise_name, enterprise_msg }) {
                     style={{margin: '10px'}}
                     {...(formik.touched.email && formik.errors.email && {error: true, helperText: formik.errors.email})}
                     />
-
                 </Grid>
                 <Grid container item xs={12} justify='center' style={{paddingBottom: '50px'}}>
                     <Button type='submit' variant='outlined' color='secondary'>Submit</Button>
