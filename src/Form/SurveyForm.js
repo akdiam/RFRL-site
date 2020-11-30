@@ -2,13 +2,13 @@ import React from 'react'
 import { useFormik } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import * as Yup from 'yup';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import logo from './RFRL_Logo_Transparent_.png';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import {db}from '../firebase';
+import { db } from '../firebase';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,12 +16,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function SurveyForm({ enterprise_name, enterprise_msg }) {
+export default function SurveyForm({ enterprise_name, campaign_name, enterprise_msg }) {
     const classes = useStyles();
     let history = useHistory();
 
     const sendToSheets = (submission) => {
-        db.collection(enterprise_name).doc(submission.email).set({
+        db.collection('enterprises').doc(enterprise_name).collection(campaign_name).doc('customers')
+        .collection('customerinfo').doc(submission.email).set({
             first_name: submission.first_name,
             last_name: submission.last_name,
             phone_num: submission.phone_num,
@@ -29,7 +30,10 @@ export default function SurveyForm({ enterprise_name, enterprise_msg }) {
             email: submission.email,
             referrer: submission.referrer,
         })
-        .then(() => console.log('Submission accepted'))
+        .then(() => {
+            console.log('Submission accepted');
+            history.push('/survey/form-complete');
+        })
         .catch((err) => console.log(`Error: ${err}`));
     }
 
@@ -53,7 +57,6 @@ export default function SurveyForm({ enterprise_name, enterprise_msg }) {
         onSubmit: values => {
             console.log(values);
             sendToSheets(values);
-            history.push('/survey/form-complete');
         }
     });
 
@@ -73,7 +76,7 @@ export default function SurveyForm({ enterprise_name, enterprise_msg }) {
                 </Grid>
                 <Grid container item xs={12} justify='center'>
                     <TextField id='referrer' 
-                    label='Who Sent You?' 
+                    label='Who Sent You? (email)' 
                     variant='outlined' 
                     onChange={formik.handleChange} 
                     value={formik.values.referrer}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {grey} from '@material-ui/core/colors';
-import Paper from '@material-ui/core/Paper';
 import {
   BrowserRouter as Router,
   Switch,
@@ -30,13 +29,14 @@ function App() {
           <Switch>
             <Route path="/survey/jimmy">
               <SurveyForm 
-              enterprise_name='Jimmy'
+              enterprise_name='jimmy'
+              campaign_name='gas_station'
               enterprise_msg='Gas on me!'
               />
             </Route>
             <Route path="/survey/form-complete">
               <FormComplete
-              enterprise_name='Jimmy'
+              enterprise_name='jimmy'
               />
             </Route>
             <Route path="/">
