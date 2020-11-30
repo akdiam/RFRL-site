@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Dashboard({ userList }) {
+export default function Dashboard({ userList, referrerList }) {
     const classes = useStyles();
 
     return (
@@ -53,8 +53,28 @@ export default function Dashboard({ userList }) {
                     </Card>
                 </Grid>
             </Grid>
-            <Grid item xs={12} sm={6}>
-
+            <Grid container item xs={12} sm={6} style={{marginTop: '200px'}} justify='center'>
+                <Grid container item xs={12} justify='center'>
+                    <Typography>Affiliate Performance</Typography>
+                </Grid>
+                <Grid container item xs={12} justify='center'>
+                    <Card>
+                        <List className={classes.root} subheader={<li />} style={{margin: '20px'}}>
+                            {Object.keys(referrerList).map((referrer) => (
+                                <li key={`section-${referrer}`} className={classes.listSection}>
+                                <ul className={classes.ul}>
+                                    <ListSubheader>{`Affiliate: ${referrer}`}</ListSubheader>
+                                    {referrerList[referrer].map((item) => (
+                                    <ListItem key={`item-${referrer}-${item}`}>
+                                        <ListItemText primary={`${item}`} />
+                                    </ListItem>
+                                    ))}
+                                </ul>
+                                </li>
+                            ))}
+                        </List>
+                    </Card>
+                </Grid>
             </Grid>
         </Grid>
     )
