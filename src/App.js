@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import SurveyForm from './Form/SurveyForm';
 import FormComplete from './Form/FormComplete';
+import DashboardContainer from './Dashboard/DashboardContainer';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -37,6 +38,12 @@ function App() {
             <Route path="/survey/form-complete">
               <FormComplete
               enterprise_name='jimmy'
+              />
+            </Route>
+            <Route path="/enterprise/jimmy/dashboard">
+              <DashboardContainer 
+              enterprise_name='jimmy'
+              campaign_name='gas_station'
               />
             </Route>
             <Route path="/">
