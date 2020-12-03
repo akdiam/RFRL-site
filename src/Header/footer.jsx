@@ -4,16 +4,18 @@ import React from "react";
 
 function Footer() {
   return (
-<Grid>
-    <Typography variant='h5' style={{marginLeft: '50px', marginTop: '0px', marginBottom: '0px'}}>
+<Grid style={{paddingTop: '100px'}, {paddingBottom: '50px'}}>
+    <Typography variant='h6' style={{marginLeft: '50px', marginTop: '0px', marginBottom: '0px'}}>
         {`Contact`}
     </Typography>
-    <Typography variant='h7' style={{marginLeft: '50px', marginTop: '0px', marginBottom: '0px'}}>
+    <Typography variant='h8' style={{marginLeft: '50px', marginTop: '0px', marginBottom: '0px'}}>
         {`Email.com`}
     </Typography>
-    <Typography variant='h7' style={{marginLeft: '50px', marginTop: '0px', marginBottom: '0px'}}>
-        {`Phone: xxx-xxx-xxxx`}
-    </Typography>
+    <Grid>
+        <Typography variant='h8' style={{marginLeft: '50px', marginTop: '0px', marginBottom: '0px'}}>
+            {`Phone: xxx-xxx-xxxx`}
+        </Typography>
+    </Grid>
 </Grid>
   );
 }

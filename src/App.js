@@ -10,7 +10,12 @@ import {
 import SurveyForm from './Form/SurveyForm';
 import FormComplete from './Form/FormComplete';
 import DashboardContainer from './Dashboard/DashboardContainer';
+import LandingPage from './LandingPage';
+import EnterpriseLandingPage from './LandingPages/EnterpriseLandingPage';
+import AffiliateLandingPage from './LandingPages/AffiliateLandingPage';
+import Footer from "./Header/footer";
 import './App.css';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -46,12 +51,17 @@ function App() {
               campaign_name='gas_station'
               />
             </Route>
+            <Route path="/enterprise/learnmore">
+              <EnterpriseLandingPage/>
+            </Route>
+            <Route path="/affiliate/learnmore">
+              <AffiliateLandingPage/>
+            </Route>
             <Route path="/">
-              <div>
-                <p>hi</p>
-              </div>
+              <LandingPage/>
             </Route>
           </Switch>
+          <Footer/>
         </Router>
     </ThemeProvider>
   );
