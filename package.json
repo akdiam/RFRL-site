@@ -7,7 +7,9 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "cypress": "^6.0.1",
     "firebase": "^8.1.1",
+    "firebase-tools": "^8.17.0",
     "formik": "^2.2.5",
     "material-ui-phone-number": "^2.2.6",
     "react": "^17.0.1",
@@ -19,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build CI=false",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
