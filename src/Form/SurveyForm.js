@@ -64,7 +64,7 @@ export default function SurveyForm({ enterprise_name, campaign_name, enterprise_
         <form onSubmit={formik.handleSubmit} style={{paddingTop: '80px'}}>
             <Grid container className={classes.root} spacing={2}>
                 <Grid container item xs={12} justify='center'>
-                    <img src={logo}/>
+                    <img src={logo} alt=''/>
                 </Grid>
                 <Grid container item xs={12} justify='center' style={{marginBottom: '20px'}}>
                     <Grid container item xs={12} justify='center'>

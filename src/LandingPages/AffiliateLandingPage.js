@@ -10,7 +10,7 @@ export default function AffiliateLandingPage() {
             <Grid container item xs={12} justify='left' style={{marginLeft: '20px'}}>
                 <Link to='/'>
                     <Button>
-                        <img src={logo}/>
+                        <img src={logo} alt=''/>
                     </Button>
                 </Link>
             </Grid>

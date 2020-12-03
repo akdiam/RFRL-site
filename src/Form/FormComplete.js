@@ -6,7 +6,7 @@ export default function FormComplete({ enterprise_name }) {
     return (
         <Grid container spacing={2} style={{paddingTop: '80px'}}>
             <Grid container item xs={12} justify='center'>
-                <img src={logo}/>
+                <img src={logo} alt=''/>
             </Grid>
             <Grid container item xs={12} justify='center' style={{marginBottom: '20px'}}>
                 <Grid container item xs={12} justify='center'>
