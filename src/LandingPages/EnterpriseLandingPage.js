@@ -10,7 +10,7 @@ export default function EnterpriseLandingPage() {
             <Grid container item xs={12} justify='left' style={{marginLeft: '20px'}}>
                 <Link to='/'>
                     <Button>
-                        <img src={logo} alt='image not found'/>
+                        <img src={logo}/>
                     </Button>
                 </Link>
                 

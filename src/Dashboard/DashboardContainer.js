@@ -29,7 +29,7 @@ export default function DashBoardContainer({ enterprise_name, campaign_name }) {
             setUsers(users_obj);
             setReferrers(referrers_obj);
         });
-    }, []);
+    },);
 
     return (
         <Dashboard 

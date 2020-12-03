@@ -4,7 +4,7 @@ import React from "react";
 
 function Footer() {
   return (
-<Grid style={{paddingTop: '100px'}, {paddingBottom: '50px'}}>
+<Grid style={{paddingTop: '100px', paddingBottom: '50px'}}>
     <Typography variant='h6' style={{marginLeft: '50px', marginTop: '0px', marginBottom: '0px'}}>
         {`Contact`}
     </Typography>

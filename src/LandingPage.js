@@ -8,7 +8,7 @@ export default function LandingPage() {
     return (
         <Grid container spacing={2} style={{paddingTop: '20px'}}>
             <Grid container item xs={12} justify='left' style={{marginLeft: '20px'}}>
-                <img src={logo} alt='image not found'/>
+                <img src={logo}/>
             </Grid>
             <Grid container item xs={12} justify='center'>
                 <Typography variant='h4' style={{marginTop: '100px', marginBottom: '10px'}}>

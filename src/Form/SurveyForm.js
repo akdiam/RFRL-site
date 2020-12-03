@@ -37,7 +37,7 @@ export default function SurveyForm({ enterprise_name, campaign_name, enterprise_
         .catch((err) => console.log(`Error: ${err}`));
     }
 
-    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+    //const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
     const formik = useFormik({
         initialValues: {
             first_name: '',
@@ -64,7 +64,7 @@ export default function SurveyForm({ enterprise_name, campaign_name, enterprise_
         <form onSubmit={formik.handleSubmit} style={{paddingTop: '80px'}}>
             <Grid container className={classes.root} spacing={2}>
                 <Grid container item xs={12} justify='center'>
-                    <img src={logo} alt='image not found'/>
+                    <img src={logo}/>
                 </Grid>
                 <Grid container item xs={12} justify='center' style={{marginBottom: '20px'}}>
                     <Grid container item xs={12} justify='center'>
