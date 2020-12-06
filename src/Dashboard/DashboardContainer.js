@@ -5,7 +5,7 @@ import Dashboard from './Dashboard';
 export default function DashBoardContainer({ enterprise_name, campaign_name }) {
     const [userList, setUsers] = useState({});
     const [referrerList, setReferrers] = useState({});
-    
+    const [isLoading, setLoading] = useState(true); 
     // gather the list of all users that filled out form
     useEffect(() => {
         db.collection('enterprises').doc(enterprise_name).collection(campaign_name).doc('customers')
@@ -28,13 +28,16 @@ export default function DashBoardContainer({ enterprise_name, campaign_name }) {
             console.log(referrers_obj);
             setUsers(users_obj);
             setReferrers(referrers_obj);
+            setLoading(false);
         });
-    },);
+    }, [enterprise_name, campaign_name]);
 
     return (
+        !isLoading ?         
         <Dashboard 
         userList={userList}
         referrerList={referrerList}
-        />
+        /> :
+        <p>loading...</p>
     )
 }
