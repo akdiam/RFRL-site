@@ -15,6 +15,7 @@ export default function LandingPage() {
                 </Link>
             </Grid>
             <Grid container item xs={12} justify='center'>
+                <image source={require('./assets/landingpageimage1.jpg')}/>
                 <Typography variant='h4' style={{marginTop: '100px', marginBottom: '10px'}}>
                     {`EASY, FREE, CENTRALIZED`}
                  </Typography> 
